@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(cp -r \"D:/code/dailyCode/C/Users/PEACEM~1/AppData/Local/Temp/vite-scaffold/\"* \"D:/code/dailyCode/\")",
-      "Bash(cp \"D:/code/dailyCode/C/Users/PEACEM~1/AppData/Local/Temp/vite-scaffold/\".gitignore \"D:/code/dailyCode/\")",
-      "Bash(rm -rf \"D:/code/dailyCode/C\")"
-    ]
-  }
-}
