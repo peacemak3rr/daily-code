@@ -58,7 +58,7 @@ function onSubmit() {
 
     <van-field v-model.number="form.hip" name="hip" label="臀围(cm)" type="number" placeholder="输入臀围" />
 
-    <van-field v-model.number="form.manualBodyFat" name="manualBodyFat" label="体脂率(%)" type="number" placeholder="留空则自动估算" />
+    <van-field :model-value="form.manualBodyFat ?? ''" @update:model-value="form.manualBodyFat = $event === '' ? null : Number($event)" name="manualBodyFat" label="体脂率(%)" type="number" placeholder="留空则自动估算" />
 
     <van-field v-model.number="form.targetBodyFat" name="targetBodyFat" label="目标体脂率(%)" type="number" placeholder="输入目标体脂率" :rules="[{ required: true }]" />
 

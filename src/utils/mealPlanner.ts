@@ -1,7 +1,6 @@
 // src/utils/mealPlanner.ts
 import type { MealPlan, MealEntry, FoodItem, AppSettings, DailyPlan } from '@/types'
 import { MEAL_TEMPLATES } from '@/constants/foodDatabase'
-import { DIETARY_GUIDE } from '@/constants/defaults'
 
 function pickFood(pool: string[], foodDb: FoodItem[], excludeIds: string[] = []): FoodItem {
   const available = pool
