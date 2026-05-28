@@ -74,17 +74,16 @@ export function generateMealPlan(
       usedIds.add(protein.id)
     }
 
-    // Calculate remaining calories for staple
-    const usedCal = sumCalories(entries, foodDb)
-    const remainingCal = calorieBudget - usedCal
-
-    // Pick staple and scale to fill remaining calories
-    if (remainingCal > 50) {
+    // Fill remaining calories with staples until budget is substantially met
+    let remainingCal = calorieBudget - sumCalories(entries, foodDb)
+    while (remainingCal > 100) {
       const staple = pickFood(staplePool, foodDb, [...recentIds, ...Array.from(usedIds)])
-      if (staple) {
-        const grams = Math.round((remainingCal / staple.per100g.calories) * 100)
-        entries.push({ foodId: staple.id, grams: Math.max(30, Math.min(grams, 300)) })
-      }
+      if (!staple) break
+      const grams = Math.min(300, Math.round((remainingCal / staple.per100g.calories) * 100))
+      if (grams < 20) break
+      entries.push({ foodId: staple.id, grams })
+      usedIds.add(staple.id)
+      remainingCal = calorieBudget - sumCalories(entries, foodDb)
     }
 
     return entries
